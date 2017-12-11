@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--扫描controller-->
+    <context:component-scan base-package="com.xianyo.microblogmodule.controller,
+                                                                com.xianyo.loginmodule.controller,
+                                                                com.xianyo.util.commentmodule.controller,
+                                                                com.xianyo.feedbackmodule.controller,
+                                                                com.xianyo.adminmodule.controller,
+                                                                com.xianyo.util.reportmodule.controller,
+                                                                com.xianyo.util.scenicmodule.controller"/>
+    <!--注解驱动配置-->
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
+    <!--multipartResolver的支持配置-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--视图解析器-->
+    <bean id="ViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property value="/WEB-INF/view/" name="prefix"/>
+        <property value=".jsp" name="suffix"/>
+    </bean>
+
+</beans>
